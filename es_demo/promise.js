@@ -14,8 +14,7 @@
 // }
 // loadScript("./1.js", call);
 
-
-// promise 
+// promise
 // 状态 开始创建 pending=>fulfilled||rejected
 // 值 开始创建 undefined=>result||error
 function loadScript(src) {
@@ -49,11 +48,30 @@ function loadScript(src) {
 // 异常处理 catch
 // Promise.all 并行处理
 
-let p1 = Promise.resolve(1)
-let p2 = Promise.resolve(2)
-let p3 = Promise.resolve(3)
-Promise.all([p1,p2,p3]).then(res=>{
-  console.log(res)
-})
+let p1 = Promise.resolve(1);
+let p2 = Promise.resolve(2);
+let p3 = Promise.resolve(3);
+// Promise.all([p1,p2,p3]).then(res=>{
+//   console.log(res)
+// })
 
-// 
+// race
+const R1 = () => {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res(1);
+    }, 1000);
+  });
+};
+
+const R2 = () => {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res(2);
+    }, 2000);
+  });
+};
+
+Promise.race([R1(), R2()]).then(res => {
+  console.log(res);
+});
