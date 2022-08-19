@@ -1,0 +1,125 @@
+{
+  "code": 200,
+  "data": {
+      "goodsId": "743318410468787941",
+      "phaseId": null,
+      "goodsTitle": "PTYOGA评估体验课",
+      "goodsImg": "https://yplus-picture-uat.oss-cn-beijing.aliyuncs.com/yplus-images/20201023/1603444009813916.jpg?x-oss-process=style/w1200",
+      "squareImg": null,
+      "goodsType": 2,
+      "courseType": 5,
+      "standardPrice": 100000,
+      "price": 100000,
+      "isActivity": 0,
+      "activityName": null,
+      "activityDesc": null,
+      "activityStartTime": null,
+      "activityEndTime": null,
+      "isHotTag": null,
+      "hotTagName": null,
+      "teacherId": "1044882666958096184",
+      "teacherName": "PTYOGA评估体验课",
+      "languageOfInstruction": "中文授课",
+      "clubIds": null,
+      "clubsName": null,
+      "clubsAddress": null,
+      "clubsLocation": "",
+      "startDate": null,
+      "endDate": null,
+      "detailUrl": null,
+      "memberPrice": null,
+      "classCount": null,
+      "specs": null,
+      "teacherCountry": "中国",
+      "contentTypes": null,
+      "teachingYears": null,
+      "teachingDate": null,
+      "isMember": null,
+      "productGroupId": null,
+      "isGroupProduct": null,
+      "ptyoga": null,
+      "goodsImgList": [
+          "https://yplus-picture-uat.oss-cn-beijing.aliyuncs.com/yplus-images/20201023/1603444009813916.jpg?x-oss-process=style/w1200"
+      ],
+      "goodsStatus": "1",
+      "phaseTime": null,
+      "teacherIds": "1044882666958096184,812809278799742549,727387655481853907,727388552114996293,848536601704269518,866639140660185019,894980227246065437,873916622148994385,996235974096716987,982492065436795942,1002103053723108357,996244881112303385,1013074612465960366,1023096667320092619,1086836756357056088,1021738983563986395,1099101586317116945,1088917398519547367,1108632217698961332,1180336822325086123,1005087384594810501,1194752098655274522",
+      "levelCode": null,
+      "teacherPicture": "https://yplus-picture-uat.oss-cn-beijing.aliyuncs.com/yplus-images/20220501/1651382220968900.jpg?x-oss-process=style/w400",
+      "teacherSummary": "Sawa跟随过来自全国各地优秀的瑜伽认证导师，具备深厚的瑜伽学术涵养，在各位导师的指导和帮助下，形成一套以精准正位为核心的先进、标准、全面、系统的瑜伽授课体系，以大力推动国内瑜伽行业的健康发展。瑜伽已经成为备受大众推崇的生活方式，其效果已经使众多人群受益，国内国外的众多明星都拥有着自己的私人教练，在繁忙及紧张之余，可以随时在私人教练的辅助下保持身材及良好的精力状态、减轻压力、减缓疲劳。我希望每一位瑜伽习练者都能够接受最专业的指导，传承纯正的瑜伽，感受和谐、平衡、合一。达到真正的精准正位，传承瑜伽之美！",
+      "teacherDetail": null,
+      "yogaYears": "",
+      "teacherSect": null,
+      "maxNumber": 9999,
+      "maxBuyNumber": 9175,
+      "classesSummary": null,
+      "classesDetail": "<p>普拉提：</p>\n<p>1.普拉提床是一种肌肉深层练习，它透过一些节奏的动作，结合科学呼吸，更多专注的控制肌肉，达到塑形、建立正确模式以及募集顺序的目的。<br />2.更好的控制自己的身体，使肌肉有力而却不失修长有型。<br />3.自身身体阻力加上Reformer的弹簧阻力能够让你收获更紧致的腹部还有更好的体态和身体协调能力！</p>\n<p><br />康复理疗：</p>\n<p>1.对身体的情况和失衡问题进行专业的分析。<br />2.学习改善身体病症的瑜伽理疗方法，如肩颈不适，脊柱问题，盆骨旋转，膝盖受伤等。<br />3.调节身心状态，通过体式、手法、芳疗等解决身体的疼痛，并且让心情得到放松。</p>",
+      "review": null,
+      "questionsAndAnswers": null,
+      "likeFlag": "0",
+      "teacherPictureSquare": null,
+      "teacherList": null,
+      "shareInfo": {
+          "picture": "https://yplus-picture-uat.oss-cn-beijing.aliyuncs.com/yplus-images/20201023/1603444009813916.jpg?x-oss-process=style/w700",
+          "title": "PTYOGA评估体验课",
+          "description": "1000元抢购，Y+瑜伽老师倾心执教，多年执教经验，期待您的加入！",
+          "url": "https://m.yplus.cn/privatedetail.html?id=743318410468787941&phaseId=null&v=57364&isSahre=1&shareSource=yplusapp",
+          "miniProgramURL": "/pages/webpage/webpage?url=https%3A%2F%2Fm.yplus.cn%2Fprivatedetail.html%3Fid%3D743318410468787941%26phaseId%3Dnull%26v%3D57364%26isSahre%3D1%26shareSource%3Dyplusapp",
+          "miniProgramImg": "https://yplus-picture-uat.oss-cn-beijing.aliyuncs.com/yplus-images/20201023/1603444009813916.jpg?x-oss-process=style/w_mid_cut_4400_3600"
+      },
+      "specsList": [
+          {
+              "specs": "筋膜刀一对一",
+              "goodsId": "1035279034847594134",
+              "phaseId": null
+          },
+          {
+              "specs": "private class_jessica",
+              "goodsId": "1183388249410766528",
+              "phaseId": null
+          },
+          {
+              "specs": "内脏归位",
+              "goodsId": "1021650621037544710",
+              "phaseId": null
+          },
+          {
+              "specs": "10节1人",
+              "goodsId": "381905014932637182",
+              "phaseId": null
+          },
+          {
+              "specs": "常规私教1节",
+              "goodsId": "727394259765823247",
+              "phaseId": null
+          },
+          {
+              "specs": "普拉提1节",
+              "goodsId": "727395897591203837",
+              "phaseId": null
+          },
+          {
+              "specs": "理疗课1节",
+              "goodsId": "727396995601269927",
+              "phaseId": null
+          },
+          {
+              "specs": "评估体验课1节",
+              "goodsId": "743318410468787941",
+              "phaseId": null
+          },
+          {
+              "specs": "皮肉分离疗程私教课",
+              "goodsId": "1010691380361561922",
+              "phaseId": null
+          }
+      ],
+      "longitude": null,
+      "latitude": null,
+      "clubsType": null,
+      "customerServiceUrl": "https://ykf-webchat.7moor.com/wapchat.html?accessId=b8955050-b6ae-11eb-b2c7-65c190414d9b&fromUrl=https://m.yplus.cn/MemberShipClassDetail.html?id=743318410468787941&v=49981&urlTitle=PTYOGA%E8%AF%84%E4%BC%B0%E4%BD%93%E9%AA%8C%E8%AF%BE&language=ZHCN&clientId=&otherParams={\"productInfo\":{\"actionText\":\"发送\",\"actionTextColor\":\"#fff\",\"attr_one\":{\"color\":\"#000000\",\"content\":\"X1\"},\"img\":\"https://yplus-picture-uat.oss-cn-beijing.aliyuncs.com/yplus-images/20201023/1603444009813916.jpg\",\"price\":\"￥1000\",\"showCardInfoMsg\":\"1\",\"sub_title\":\"PTYOGA%E8%AF%84%E4%BC%B0%E4%BD%93%E9%AA%8C%E8%AF%BE\",\"tags\":[{\"focusIframe\":\"detailIframe\",\"label\":\"查看详情\",\"url\":\"https%3A%2F%2Fm.yplus.cn%2FMemberShipClassDetail.html%3Fid%3D743318410468787941%26v%3D49981\"}],\"time\":\"agent\",\"title\":\"PTYOGA%E8%AF%84%E4%BC%B0%E4%BD%93%E9%AA%8C%E8%AF%BE\",\"visible\":\"true\"}}"
+  },
+  "extend": null,
+  "message": "Successful",
+  "status": false
+}
