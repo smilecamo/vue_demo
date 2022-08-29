@@ -45,7 +45,7 @@ const menu = [
   },
   {
     title: "优惠卷记录",
-    name: "",
+    name: "user-coupon-page",
   },
   {
     title: "我的收藏",

@@ -60,3 +60,9 @@ export function useUserTestList(page){
     return `/user_test/list?page=${page}`
   })
 }
+// 获取我的优惠卷记录
+export function useUserCouponList(page){
+  return useHttpGet('useUserCouponList',() => {
+    return `/user_coupon?page=${page}`
+  })
+}
