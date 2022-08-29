@@ -1,9 +1,11 @@
 <template>
   <div>
     <div v-if="pending">
+    <slot name="loading">
       <GlobalLoadingTemplate></GlobalLoadingTemplate>
+    </slot>
     </div>
-    <div v-else-if="error" class="mt-3">
+    <template v-else-if="error" class="mt-3">
       <ClientOnly>
         <n-result
           status="500"
@@ -15,10 +17,13 @@
           </template>
         </n-result>
       </ClientOnly>
-    </div>
-    <div v-else>
+    </template>
+    <template v-else-if="empty">
+      <UiEmpty></UiEmpty>
+    </template>
+    <template v-else>
       <slot></slot>
-    </div>
+    </template>
   </div>
 </template>
 
@@ -28,6 +33,10 @@ const props = defineProps({
   pending: {
     type: Boolean,
     default: true,
+  },
+  empty: {
+    type: Boolean,
+    default: false,
   },
   error: {
     type: [String, Object, Symbol, Boolean],

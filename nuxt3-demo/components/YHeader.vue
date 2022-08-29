@@ -1,41 +1,61 @@
 <template>
-<div class=" bg-white header shadow-md">
-  <div class="container flex justify-between items-center h-[60px] mb-2">
-    <div class="header-left">
-      <n-button text class="!font-bold !text-2xl">社区</n-button>
-    </div>
-    <UiMenu class="ml-3">
-      <UiMenuItem
-        v-for="item of menuList"
-        :key="item.name"
-        :active="menuActive(item)"
-        @click="navGo(item.path)"
-      >
-        {{ item.name }}
-      </UiMenuItem>
-    </UiMenu>
+  <div>
+    <div class="bg-white header shadow-md">
+      <div class="container flex justify-between items-center h-[60px] mb-2">
+        <div class="header-left">
+          <n-button text class="!font-bold !text-2xl">社区</n-button>
+        </div>
+        <UiMenu class="ml-3">
+          <UiMenuItem
+            v-for="item of menuList"
+            :key="item.name"
+            :active="menuActive(item)"
+            @click="navGo(item.path)"
+          >
+            {{ item.name }}
+          </UiMenuItem>
+        </UiMenu>
 
-    <div class="header-right">
-      <n-button circle class="mr-3">
-        <n-icon size="24">
-          <Search></Search>
-        </n-icon>
-      </n-button>
-      <n-dropdown trigger="hover" :options="options" @select="handleSelect">
-        <n-avatar
-          round
-          size="small"
-          src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg"
-        />
-      </n-dropdown>
+        <div class="header-right flex items-center">
+          <n-button circle class="mr-3" @click="openSearch">
+            <n-icon size="24">
+              <Search></Search>
+            </n-icon>
+          </n-button>
+          <NuxtLink to="/login" v-if="user == null">
+            <n-button text>登录</n-button>
+          </NuxtLink>
+          <n-dropdown
+            v-else
+            trigger="hover"
+            :options="options"
+            @select="handleSelect"
+          >
+            <n-avatar
+              round
+              size="small"
+              :src="
+                user?.avatar ||
+                'https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg'
+              "
+            />
+          </n-dropdown>
+        </div>
+        <SearchView ref="searchView"></SearchView>
+      </div>
     </div>
+    <div class="h-[80px]"></div>
   </div>
-</div>
-<div class="h-[80px]"></div>
 </template>
 
 <script setup>
-import { NButton, NAvatar, NDropdown, NIcon } from "naive-ui";
+import {
+  NButton,
+  NAvatar,
+  NDropdown,
+  NIcon,
+  createDiscreteApi,
+} from "naive-ui";
 import { Search } from "@vicons/ionicons5";
 const options = [
   {
@@ -48,7 +68,23 @@ const options = [
   },
 ];
 const handleSelect = (value) => {
+  if (value === "logout") {
+    const { dialog } = createDiscreteApi(["dialog"]);
+    dialog.warning({
+      content: "确定要退出吗？",
+      positiveText: "退出",
+      negativeText: "取消",
+      onPositiveClick: async () => {
+        await userLogout();
+      },
+    });
+  }
+  if(value === 'center'){
+    navigateTo('/user/history/1')
+  }
 };
+// 用户信息
+const user = await useUser();
 const menuList = [
   {
     name: "首页",
@@ -66,7 +102,7 @@ const menuList = [
       {
         name: "list-type-page",
         params: {
-          type:"group"
+          type: "group",
         },
       },
     ],
@@ -78,7 +114,7 @@ const menuList = [
       {
         name: "list-type-page",
         params: {
-          type:"flashsale"
+          type: "flashsale",
         },
       },
     ],
@@ -90,7 +126,7 @@ const menuList = [
       {
         name: "list-type-page",
         params: {
-          type:"live"
+          type: "live",
         },
       },
     ],
@@ -102,7 +138,7 @@ const menuList = [
       {
         name: "list-type-page",
         params: {
-          type:"column"
+          type: "column",
         },
       },
     ],
@@ -114,7 +150,7 @@ const menuList = [
       {
         name: "list-type-page",
         params: {
-          type:"book"
+          type: "book",
         },
       },
     ],
@@ -134,16 +170,17 @@ function navGo(path) {
   navigateTo(path);
 }
 const menuActive = (data) => {
-  // route.name 
+  // route.name
   // 匹配规则 路由选择
   if (data.match) {
     // 遍历规则
     const match = data.match.findIndex((m) => {
-      let res = true
-      if(m.params && typeof m.params === 'object'){
-        res = (Object.keys(m.params).findIndex(i=>{
-            return m.params[i] == route.params[i]
-        })) != -1
+      let res = true;
+      if (m.params && typeof m.params === "object") {
+        res =
+          Object.keys(m.params).findIndex((i) => {
+            return m.params[i] == route.params[i];
+          }) != -1;
       }
       return m.name === route.name && res;
     });
@@ -151,6 +188,11 @@ const menuActive = (data) => {
   }
   // 没有设定的规则就直接拿路由进行匹配
   return route.path === data.path;
+};
+// 搜索框的ref
+const searchView = ref(null);
+const openSearch = () => {
+  searchView.value.open();
 };
 </script>
 

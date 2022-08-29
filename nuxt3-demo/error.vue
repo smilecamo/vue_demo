@@ -3,7 +3,7 @@
   <n-result
     status="500"
     title="错误"
-    :description="error.statusMessage"
+    :description="error.message"
   >
     <template #footer>
       <n-button @click="handleError">返回</n-button>
