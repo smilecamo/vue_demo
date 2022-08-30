@@ -49,7 +49,7 @@ const menu = [
   },
   {
     title: "我的收藏",
-    name: "",
+    name: "user-fava-page",
   },
   {
     title: "修改资料",

@@ -66,3 +66,15 @@ export function useUserCouponList(page){
     return `/user_coupon?page=${page}`
   })
 }
+// 获取我的收藏
+export function useUserFavaList(page){
+  return useHttpGet('useUserFavaList',() => {
+    return `/user_fava/?page=${page}`
+  })
+}
+// 取消收藏
+export function useUserUnCollect(body){
+  return useHttpPost('userUnCollect','/uncollect',{
+    body
+  })
+}
