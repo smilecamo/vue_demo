@@ -78,3 +78,20 @@ export function useUserUnCollect(body){
     body
   })
 }
+// 更新用户信息
+export function useUserUpdateInfo(body){
+  return useHttpPost('userUpdateInfo','/update_info',{
+    body
+  })
+}
+// 更新用户信息
+export function useUserUpload(){
+  const token = useCookie('token')
+  return {
+    action: globalHeader.baseURL,
+    headers:{
+      appid:globalHeader.headers.appid,
+      token:token.value
+    }
+  }
+}

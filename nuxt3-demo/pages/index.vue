@@ -28,5 +28,5 @@
 </template>
 
 <script setup>
-const { data, pending, error, refresh } = await getIndex();
+const { data, pending, error } = await getIndex();
 </script>

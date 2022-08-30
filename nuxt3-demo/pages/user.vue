@@ -30,30 +30,37 @@ const menu = [
   {
     title: "学习记录",
     name: "user-history-page",
+    path: "/user/history/1",
   },
   {
     title: "购买记录",
+    path: "/user/pay/1",
     name: "user-pay-page",
   },
   {
     title: "我的考试",
+    path: "/user/test/1",
     name: "user-test-page",
   },
   {
     title: "我的贴子",
+    path: "/user/post/1",
     name: "user-post-page",
   },
   {
     title: "优惠卷记录",
+    path: "/user/coupon/1",
     name: "user-coupon-page",
   },
   {
     title: "我的收藏",
+    path: "/user/fava/1",
     name: "user-fava-page",
   },
   {
     title: "修改资料",
-    name: "",
+    path: "/user/edit",
+    name: "user-edit",
   },
   {
     title: "修改密码",
@@ -65,7 +72,7 @@ const menu = [
   },
 ];
 const menuItem = (item) => {
-  navigateTo({name:item.name})
+  navigateTo(item.path)
 };
 definePageMeta({
   middleware: ["auth"],

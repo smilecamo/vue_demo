@@ -24,11 +24,7 @@
         show-password-on="mousedown"
       />
     </n-form-item>
-    <n-form-item
-      label=""
-      path="repassword"
-      :show-label="false"
-    >
+    <n-form-item label="" path="repassword" :show-label="false">
       <n-input
         v-model:value="form.repassword"
         :disabled="form.password == ''"
@@ -97,16 +93,16 @@ const rules = computed(() => {
     ],
     repassword: [
       {
-          required: true,
+        required: true,
         validator(rule, value) {
-            if (!value) {
-              return new Error("需要再次输入密码");
-            } else if (value !== form.password) {
-              return new Error("两次密码不一致");
-            }
-            return true;
-          },
-          trigger: ["input", "blur"]
+          if (!value) {
+            return new Error("需要再次输入密码");
+          } else if (value !== form.password) {
+            return new Error("两次密码不一致");
+          }
+          return true;
+        },
+        trigger: ["input", "blur"],
       },
     ],
   };
