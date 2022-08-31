@@ -26,7 +26,7 @@
 
     <div style="display: flex; justify-content: flex-end">
       <n-button type="primary" @click="handleValidateButtonClick">
-        验证
+        修改信息
       </n-button>
     </div>
   </n-form>

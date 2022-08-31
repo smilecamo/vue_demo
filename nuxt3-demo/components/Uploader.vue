@@ -11,7 +11,7 @@
       :headers="headers"
       :data="data"
       v-model:file-list="fileList"
-      :max="1"
+      :max="max"
       :multiple="multiple"
       list-type="image-card"
       :on-error="handleError"
@@ -21,17 +21,23 @@
 </template>
 
 <script setup>
-import { NUpload,NSpin } from "naive-ui";
+import { NUpload,NSpin,createDiscreteApi } from "naive-ui";
 const props = defineProps({
   data: Object,
+  max: {
+    type:Number,
+    default:1
+  },
   multiple:{
     type:Boolean,
     default:false
   },
   modelValue: [String, Array],
 });
+// 上传列表
 const fileList = ref([]);
 const { action, headers } = useUserUpload();
+// 初始化传进来的图片地址
 initFileList();
 function initFileList() {
   // 如果是数组
@@ -57,6 +63,8 @@ function initFileList() {
 
 }
 const handleError = (e) => {
+  const {message} = createDiscreteApi(['message'])
+  message.error('上传图片失败')
   console.log(e);
 }
 const emit = defineEmits(['update:modelValue'])
