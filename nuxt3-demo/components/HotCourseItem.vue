@@ -1,5 +1,5 @@
 <template>
-  <div class="shadow-md mt-3 rounded">
+  <div class=" mt-3 rounded shadow hover:shadow-lg cursor-pointer">
   <UiImage :src="item.cover"></UiImage>
   <div class="px-4 py-3">
     <div class="text-base font-bold truncate">{{item.title}}</div>
@@ -17,7 +17,3 @@ const props = defineProps({
   }
 })
 </script>
-
-<style lang="scss" scoped>
-
-</style>

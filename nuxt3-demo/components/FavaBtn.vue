@@ -36,7 +36,7 @@ const handleFava =  () => {
   }
   is_fava.value = !is_fava.value
   const {message} = createDiscreteApi(['message'])
-  const msg = is_fava.value?'点赞':'取消点赞'
+  const msg = is_fava.value?'收藏':'取消收藏'
   message.success(msg+'成功')
   })
 

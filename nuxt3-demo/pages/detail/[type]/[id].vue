@@ -19,7 +19,7 @@
             <n-tag type="warning" size="small">领取优惠卷</n-tag>
           </div>
           <div v-if="!data.isbuy">
-            <n-button type="primary">立即学习</n-button>
+            <n-button type="primary" @click="learn">立即学习</n-button>
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@ import { NTag, NButton,NGi,NGrid } from "naive-ui";
 const route = useRoute();
 const { type, id } = route.params;
 // 详情数据
-const { data, pending, error } = await useCourseRead({ id });
+const { data, pending, error,refresh} = await useCourseRead({ id });
 const title = computed(() => {
   return !pending.value ? data.value.title : "请求中。。。";
 });
@@ -57,6 +57,20 @@ const subTitle = computed(() => {
 useHead({ title });
 // 推荐数据
 const {data:hotData,error:hotError} =  await useHotList()
+
+// 立即学习
+// useOrderLearn 
+const learn = async () => {
+  useHasAuth(async () => {
+    const learnBodyData = {type,goods_id:id}
+      if(+data.value.price === 0){
+        const {data:learnData,error:learnError} = await useOrderLearn(learnBodyData)
+        if(learnError.value) return
+        refresh()
+      }
+  })
+
+}
 </script>
 
 <style lang="scss" scoped></style>
