@@ -4,3 +4,12 @@ export function useCourseList(page){
     return `/course/list/?page=${page}`
   })
 }
+// 查看课程详情
+export function useCourseRead(params){
+  return useHttpGet('useCourseRead',() => {
+    let q = useQueryToString(params)
+    return `/course/read${q}`
+  },{
+    lazy:true
+  })
+}

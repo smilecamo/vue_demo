@@ -84,6 +84,12 @@ export function useUserUnCollect(body){
     body
   })
 }
+// 取消收藏
+export function useUserCollect(body){
+  return useHttpPost('userCollect','/collect',{
+    body
+  })
+}
 // 更新用户信息
 export function useUserUpdateInfo(body){
   return useHttpPost('userUpdateInfo','/update_info',{

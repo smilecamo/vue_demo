@@ -5,3 +5,7 @@ export function getSearchList(params){
     return `/search${q}`
   })
 }
+// 推荐列表
+export function useHotList(){
+  return useHttpGet('useHotList',`/hot`)
+}

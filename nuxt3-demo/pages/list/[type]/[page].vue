@@ -13,7 +13,7 @@
     <!-- 内容区域 -->
     <n-grid x-gap="12" :cols="4" class="mt-3">
       <n-gi v-for="item of pageData" :key="item.id" class="mb-4 cursor-pointer">
-        <n-card footer-style="padding:0">
+        <n-card footer-style="padding:0" @click="go(item.id)">
           <template #cover>
             <UiImage :src="item.cover" class="h-[192px]"></UiImage>
           </template>
@@ -46,6 +46,9 @@ const { pageData, itemCount, pending, error, refresh, updatePage, page } =
 definePageMeta({
   middleware: ["list"]
 })
+const go = (id) => {
+  navigateTo(`/detail/course/${id}`)
+}
 </script>
 
 <style lang="scss" scoped></style>
