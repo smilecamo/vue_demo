@@ -40,6 +40,12 @@ export  function  userForgetApi(body){
     body
   })
 }
+// 修改密码
+export  function  userUserUpdatePasswordApi(body){
+  return useHttpPost('userUpdatePassword','/update_password',{
+    body
+  })
+}
 
 // 获取学习记录
 export function useUserHistory(params){

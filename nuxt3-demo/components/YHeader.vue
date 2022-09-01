@@ -161,6 +161,18 @@ const menuList = [
     match: [{ name: "bbs-page" }],
   },
   {
+    name: "课程",
+    path: "/list/course/1",
+    match: [
+      {
+        name: "list-type-page",
+        params: {
+          type: "course",
+        },
+      },
+    ],
+  },
+  {
     name: "问答",
     path: "/q",
   },

@@ -64,11 +64,13 @@ const menu = [
   },
   {
     title: "修改密码",
-    name: "",
+    path: "/user/editPassword",
+    name: "user-editPassword",
   },
   {
     title: "其他设置",
-    name: "",
+    path: "/user/other",
+    name: "user-other",
   },
 ];
 const menuItem = (item) => {
