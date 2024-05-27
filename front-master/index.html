@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0, viewport-fit=cover"
+    />
+    <title>Vite + Vue</title>
+    <!-- QQ 登录 -->
+    <script
+      type="text/javascript"
+      charset="utf-8"
+      src="https://connect.qq.com/qc_jssdk.js"
+      data-appid="101998494"
+      data-redirecturi="https://imooc-front.lgdsunday.club/login"
+    ></script>
+    <head>
+      <!-- <script
+        src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js"
+        type="text/javascript"
+        charset="utf-8"
+      ></script> -->
+    </head>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+    <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+    <script>
+      // VConsole will be exported to `window.VConsole` by default.
+      var vConsole = new window.VConsole()
+    </script>
+  </body>
+</html>

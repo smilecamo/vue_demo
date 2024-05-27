@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn1">start</button>
+    <button id="btn2">end</button>
+    <button id="btn3">work</button>
+    <script>
+      var worker = new Worker("./worker.js");
+      document.getElementById("btn1").addEventListener("click", () => {
+        worker.postMessage({
+          type: "start",
+          data: "hello start",
+        });
+      });
+      document.getElementById("btn2").addEventListener("click", () => {
+        worker.postMessage({
+          type: "stop",
+          data: "hello stop",
+        });
+      });
+      document.getElementById("btn3").addEventListener("click", () => {
+        worker.postMessage({
+          type: "send",
+          data: document.getElementById("btn1"),
+        });
+      });
+    </script>
+  </body>
+</html>

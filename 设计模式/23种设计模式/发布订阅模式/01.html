@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 发布订阅模式
+    观察者和目标要相互知道
+    发布者和订阅者不用互相知道，通过第三方实现调度，属于经过解耦的观察者模式 -->
+    <script>
+      const PubSub = {
+        // 存储的地方
+        message: {},
+        // 发布者
+        publish(type, data) {
+          if (!this.message[type]) return;
+          this.message[type].forEach((element) => {
+            element(data);
+          });
+        },
+        // 订阅者
+        subscribe(type, cb) {
+          if (!this.message[type]) {
+            this.message[type] = [cb];
+          } else {
+            this.message[type].push(cb);
+          }
+        },
+        // 取消
+        unsubscribe(type, cb) {
+          if (!this.message[type]) return;
+          if (this.message[type] && !cb) this.message[type].length = 0;
+          if (this.message[type] && cb)
+            this.message[type] = this.message[type].filter(
+              (item) => item !== cb
+            );
+        },
+      };
+      const f1 = (data) => {
+        console.log("fn1", data);
+      };
+      const f2 = (data) => {
+        console.log("fn2", data);
+      };
+      const f3 = (data) => {
+        console.log("fn3", data);
+      };
+      //   订阅分组
+      PubSub.subscribe("A", f1);
+      PubSub.subscribe("A", f3);
+      PubSub.subscribe("B", f2);
+      //   取消订阅分组
+      PubSub.unsubscribe("A", f3);
+      PubSub.publish("A", "11111");
+    </script>
+  </body>
+</html>

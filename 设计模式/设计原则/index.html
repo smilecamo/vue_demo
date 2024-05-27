@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+        1.何为设计 
+        2.五大设计原则（SOLID） 
+            S-单一职责原则： 一个程序只做好一件事情，如果功能复杂就拆分开，每个部分保持独立
+            O-开放关闭原则： 对扩展开放，对修改封闭，增加需求时，扩展新代码而非修改已有代码；软件设计的终极目标
+            L-李氏置换原则：子类能覆盖父类，父类能出现的地方子类就能出现
+            I-接口独立原则：保持接口的单一独立，避免出现‘胖接口’
+            D-依赖倒置原则：面向接口编程，依赖于抽象而不是具体，使用方只关注接口而不是具体实现
+        3.从设计到模式 
+            设计； 模式； 分开； 从设计到模式
+        4.23种设计模式
+            1.创建型 这类模式提供创建对象的机制， 能够提升已有代码的灵活性和可复用性
+                工厂模式（工厂方法模式，抽象工厂模式，建造者模式），单例模式，原型模式
+            2.结构型 这类模式介绍如何将对象和类组装成较大的结构， 并同时保持结构的灵活和高效。
+                适配器模式，装饰器模式，代理模式，外观模式，桥接模式，组合模式，享元模式
+            3.行为型 这类模式负责对象间的高效沟通和职责委派。
+                策略模式，模板方法模式，观察者模式，迭代器模式，职责连模式，命令模式，备忘录模式，状态模式，访问者模式，中介模式，解释器模式
+    -->
+    <script>
+      class Car {
+        constructor(number, name) {
+          this.number = number;
+          this.name = name;
+        }
+      }
+      class zhuanche extends Car {
+        constructor(number, name) {
+          super(number, name);
+          this.price = 1;
+        }
+      }
+      class kuaiche extends Car {
+        constructor(number, name) {
+          super(number, name);
+          this.price = 2;
+        }
+      }
+      class Trip {
+        constructor(car) {
+          this.car = car;
+        }
+        start() {
+          console.log(
+            `行程开始，车牌号：${this.car.number},车型${this.car.name},价格${this.car.price}`
+          );
+        }
+        end() {
+          console.log(`行程结束，价格${this.car.price * 5}`);
+        }
+      }
+      let car = new zhuanche(100, "比亚迪");
+      let carTrip = new Trip(car);
+      carTrip.start();
+      carTrip.end();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        background-image: url("https://cdn.pixabay.com/photo/2023/07/24/20/42/poppy-8147823_640.jpg");
+        /* background: #f3f3f3; */
+      }
+      :root {
+        --t: 20%;
+      }
+      .container {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: conic-gradient(
+          from 0deg,
+          transparent 0% var(--t),
+          #fff var(--t) 100%
+        );
+      }
+      .container::before {
+        content: "";
+        position: absolute;
+        inset: 10px;
+        border-radius: 50%;
+        background: #fff;
+      }
+      .cicle {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        font-size: 2rem;
+        transform: translate(-50%, -50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <span class="cicle">3</span>
+    </div>
+  </body>
+</html>

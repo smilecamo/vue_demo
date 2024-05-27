@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>layout</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      header,
+      nav,
+      main,
+      footer {
+        background: slateblue;
+        background-clip: content-box;
+        padding: 10px;
+      }
+      .container {
+        width: 100vw;
+        height: 100vh;
+        border: 1px salmon solid;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-rows: 60px 1fr 80px;
+        grid-template-columns: 60px 1fr;
+        grid-template-areas: "header header" "nav main" " footer footer";
+      }
+      header {
+        grid-area: header;
+      }
+      footer {
+        grid-area: footer;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header></header>
+      <nav></nav>
+      <main></main>
+      <footer>
+        <div>11</div>
+        <div>21</div>
+        <div>31</div>
+        <div>41</div>
+      </footer>
+    </div>
+  </body>
+</html>

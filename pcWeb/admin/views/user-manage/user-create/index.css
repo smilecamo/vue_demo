@@ -1,0 +1,11 @@
+.user-info {
+  display: flex;
+}
+.user-info > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.user-info > div pre {
+  all: unset;
+}/*# sourceMappingURL=index.css.map */

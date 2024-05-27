@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 
+        // 嵌套写法
+        .p{
+            & .o{
+                
+            }
+        }
+        // box-shadow 盒阴影的作用是在整个元素的后方创建阴影，
+        // drop-shadow() 滤镜则是创建一个符合元素本身形状（alpha 通道）的阴影。
+        给父元素设置drop-shadow滤镜，就可以给子元素设置边框
+     -->
+    <style>
+      .parent {
+        margin: 0 auto;
+        filter: drop-shadow(0 0 0.5px #000) drop-shadow(0 0 0.5px #000)
+          drop-shadow(0 0 0.5px #000) drop-shadow(0 0 0.5px #000)
+          drop-shadow(0 0 0.5px #000) drop-shadow(0 0 0.5px #000)
+          drop-shadow(0 0 0.5px #000);
+        & .children {
+          width: 200px;
+          height: 100px;
+          background: salmon;
+          clip-path: polygon(
+            0 50%,
+            40% 0,
+            40% 20%,
+            100% 20%,
+            100% 80%,
+            40% 80%,
+            40% 100%
+          );
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parent">
+      <div class="children"></div>
+    </div>
+  </body>
+</html>

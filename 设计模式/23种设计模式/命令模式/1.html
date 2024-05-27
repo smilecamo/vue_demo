@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 组合模式+命令模式
+      // 宏命令模式
+      // 组合模式 一个根命令 下面的子命令全部执行
+
+      //  命令模式 有时候需要向某些对象发送请求，但是并不知道请求的接受者是谁，也不知道被请求者的操作是什么，需要一种松耦合的方式来设计程序，使发送者和接受者能消除之间的耦合关系
+      // 三种角色
+      //  发布者invoker 发出命令，调用命令对象，不知道如何执行与谁执行
+      // 接收者 recriver 提供对应接口处理请求，不知道谁发的请求
+      // 命令对象 command 接受命令，调用接收者对应接口处理发布者的请求
+      class MacroCommand {
+        constructor() {
+          this.list = [];
+        }
+        add(commond) {
+          this.list.push(commond);
+        }
+        execute() {
+          this.list.forEach((item) => {
+            item.execute();
+          });
+        }
+      }
+      const Swiper = {
+        execute() {
+          console.log("swiper");
+          this.init();
+          this.reset();
+        },
+        init() {
+          console.log("swiper init");
+        },
+        reset() {
+          console.log("swiper reset");
+        },
+      };
+      const Tabs = {
+        execute() {
+          console.log("Tabs");
+        },
+      };
+      const macroCommand = new MacroCommand();
+      macroCommand.add(Swiper);
+      macroCommand.add(Tabs);
+      macroCommand.execute();
+    </script>
+  </body>
+</html>

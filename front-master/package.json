@@ -1,0 +1,37 @@
+{
+  "name": "front",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@better-scroll/core": "^2.4.2",
+    "@vueuse/core": "^9.1.0",
+    "ali-oss": "^6.17.1",
+    "axios": "^0.27.2",
+    "cropperjs": "^1.5.12",
+    "dayjs": "^1.11.5",
+    "driver.js": "^0.9.8",
+    "file-saver": "^2.0.5",
+    "gsap": "^3.11.0",
+    "md5": "^2.3.0",
+    "vee-validate": "^4.6.7",
+    "vue": "^3.2.37",
+    "vue-router": "4.0.14",
+    "vuex": "4.0.2",
+    "vuex-persistedstate": "^4.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.0.3",
+    "autoprefixer": "10.4.2",
+    "postcss": "8.4.8",
+    "postcss-nesting": "^10.1.10",
+    "sass": "^1.54.4",
+    "tailwindcss": "3.0.23",
+    "vite": "^3.0.7",
+    "vite-plugin-svg-icons": "^2.0.1"
+  }
+}

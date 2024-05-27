@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flex</title>
+    <style>
+      .wrap {
+        display: flex;
+        /* flex-wrap: nowrap; */
+        width: 500px;
+        height: 500px;
+        border: 1px solid saddlebrown;
+      }
+      .wrap div {
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+        /* flex: 1; */
+      }
+      /* 
+        flex: flex-grow(增长系数：1) flex-shrink（收缩规则：1） flex-basis（初始大小：auto）; 子元素 
+        flex: 1 1 auto
+        */
+      .red {
+        order: 1;
+        /* flex-shrink: 4; */
+        /* flex-grow: 1; */
+        /* 
+            1. 计算剩余空间 500 - 300 = 200 
+            2. 平分 flex-grow 有几个 200/2=100
+            3. 合并 100+ 100
+        */
+        background-color: red;
+      }
+      .green {
+        /* flex-grow: 2; */
+        order: 2;
+        background-color: green;
+      }
+      .orange {
+        order: 3;
+        background-color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="red">1</div>
+      <div class="green">2</div>
+      <div class="orange">3</div>
+      <div class="red">1</div>
+      <div class="green">2</div>
+      <div class="orange">3</div>
+      <div class="red">1</div>
+      <div class="green">2</div>
+      <div class="orange">3</div>
+    </div>
+  </body>
+</html>

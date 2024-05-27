@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+        为对象添加新功能，不改变原有的结构和功能
+     -->
+    <script>
+      function testDec(isDec) {
+        return function (target) {
+          target.isDec = isDec;
+        };
+      }
+      @testDec(false)
+      class Demo {}
+      alert(Demo.isDec);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+import { createApp } from "vue";
+import router from "./router/index";
+import App from "./App.vue";
+import ElementPlus from "element-plus";
+import "element-plus/dist/index.css";
+import loadAllIocn from "./utils/loadAllIocn";
+import Mui from "./components";
+const app = createApp(App);
+app.use(router).use(ElementPlus).use(loadAllIocn).use(Mui);
+app.mount("#app");

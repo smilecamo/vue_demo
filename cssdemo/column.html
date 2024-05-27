@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* columns:100px 这个表示按照最小100px去分段，看最多可以分成多少列，并不是说每列就一定是 100，应该是大于等于 100，直到剩余空间可以再放下一列。
+            columns:3 表示分为3列
+            column-gap： 0px 分割间距
+            column-rule: 1px solid red; 分割线 不占间距
+            font-size: 0;：这一行将字体大小设置为0。这通常用于解决某些布局问题，其中元素之间可能存在间隙或不必要的空白。通过将字体大小设置为0，可以消除这些间隙，使元素更紧凑地排列。请注意，如果元素内部有文本内容，将不会显示任何文本，因为字体大小为0。
+         */
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        background: aliceblue;
+      }
+      .wrap {
+        display: flex;
+        width: 400px;
+        overflow: auto;
+        outline: 1px dashed #9747ff;
+        scroll-padding: 10px;
+        scroll-snap-type: x mandatory;
+      }
+      .list {
+        column-width: 400px;
+        height: 200px;
+        font-size: 0;
+      }
+      .item {
+        display: inline-flex;
+        width: 80px;
+        margin: 10px;
+        aspect-ratio: 1;
+        background: #ffe8a3;
+        color: #333;
+        font-size: 30px;
+        border-radius: 10px;
+        align-items: center;
+        justify-content: center;
+      }
+      .action {
+        margin-top: 20px;
+      }
+      .item:nth-child(8n + 1) {
+        background-color: #f8cc4a;
+        scroll-snap-align: start;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="list">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+        <div class="item">9</div>
+        <div class="item">10</div>
+        <div class="item">11</div>
+        <div class="item">12</div>
+        <div class="item">13</div>
+        <div class="item">14</div>
+      </div>
+    </div>
+  </body>
+</html>

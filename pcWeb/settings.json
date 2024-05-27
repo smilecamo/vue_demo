@@ -1,0 +1,12 @@
+{
+  "liveSassCompile.settings.generateMap": false,
+  "liveSassCompile.settings.autoprefix": [],
+  "liveSassCompile.settings.includeItems": ["/pcWeb/admin/style/index.scss"],
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "/path/to/output/folder"
+    }
+  ]
+}

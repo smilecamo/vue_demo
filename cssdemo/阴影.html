@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 
+        box-shadow: 0px 0px 10px 10px #000;  
+        box-shadow 还区分内阴影，内阴影使用关键字 inset 进行描述；
+        box-shadow 多一个阴影扩散半径参数。
+            offset-x x偏移量
+            offset-y y偏移量
+            blur-radius 阴影模糊半径
+            spread-radius 阴影扩散半径
+            color 阴影颜色
+        text-shadow: 0px 0px 10px #000;
+            offset-x x偏移量
+            offset-y y偏移量
+            blur-radius 阴影模糊半径
+            color 阴影颜色
+        filter:drop-shadow(0 0 10px #ccc)
+            offset-x x偏移量
+            offset-y y偏移量
+            blur-radius 阴影模糊半径
+            color 阴影颜色
+     -->
+    <style>
+      .wrap {
+        /* width: 300px;
+        height: 300px;
+        background: #fff;
+        border: 1px solid #444; */
+        /* box-shadow: 4px 4px 10px #ccc; */
+        /* filter: drop-shadow(4px 4px 10px #ccc); */
+
+        /*
+            单侧阴影
+            单侧投影的核心是第四个参数：扩张半径。
+            这个参数会根据你指定的值去扩大或缩小投影尺寸，
+            如果我们用一个负的扩张半径，而他的值刚好等于模糊半径，
+            那么投影的尺寸就会与投影所属的元素尺寸完全一致，
+            除非使用偏移量来移动他，否则我们将看不到任何投影。
+            但是这种阴影会比之前的元素较小
+        */
+        /* box-shadow: -7px 0 5px -5px #ccc; */
+        /* box-shadow: 7px 0 5px -5px #333;  */
+        /*box-shadow: -7px 0 5px -5px #333;*/
+        /*box-shadow: -7px 0 5px -5px #333;*/
+
+        /*** clip-path投影 ***/
+        /* box-shadow: 10px 10px 10px 10px #9ce2e1;
+        clip-path: polygon(-100% 100%, 200% 100%, 200% 500%, -100% 500%); */
+
+        /* 立体阴影 */
+        position: relative;
+        width: 600px;
+        height: 100px;
+        margin: 5vmin auto 15vmin;
+        background: hsl(48, 100%, 50%);
+        border-radius: 20px;
+        box-shadow: 0 0 5px 2px hsl(48, 100%, 45%);
+      }
+      .wrap::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        right: 5%;
+        bottom: 15%;
+        border-radius: 10px;
+        background: hsl(48, 100%, 25%);
+        box-shadow: 0 0 20px 15px hsl(48, 100%, 25%);
+        transform: translate(0, -20%) rotate(-4deg);
+        z-index: -1;
+      }
+      .wrap::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        right: 5%;
+        bottom: 15%;
+        border-radius: 10px;
+        background: hsl(48, 100%, 25%);
+        transform: translate(0, -20%) rotate(4deg);
+        transform-origin: center center;
+        box-shadow: 0 0 20px 15px hsl(48, 100%, 25%);
+        z-index: -1;
+      }
+      .wrap2 {
+        position: relative;
+        width: 600px;
+        height: 100px;
+        margin: 5vmin auto 15vmin;
+        border-radius: 20px;
+        background: hsl(150, 62%, 52%);
+        box-shadow: 0 0 5px 2px hsl(150, 62%, 40%);
+      }
+      .wrap2::before {
+        content: "";
+        position: absolute;
+        top: 15%;
+        bottom: 20%;
+        left: 90%;
+        right: 5%;
+        border-radius: 10px;
+        background: hsl(150, 62%, 20%);
+        transform: translate(105%, 10%) rotate(15deg);
+        transform-origin: center center;
+        box-shadow: 0 0 10px 7px hsl(150, 62%, 20%);
+        z-index: -1;
+      }
+      .wrap2::after {
+        content: "";
+        position: absolute;
+        top: 15%;
+        bottom: 20%;
+        left: 5%;
+        right: 90%;
+        border-radius: 10px;
+        background: hsl(150, 62%, 20%);
+        transform: translate(-105%, 10%) rotate(-15deg);
+        transform-origin: center center;
+        box-shadow: 0 0 10px 7px hsl(150, 62%, 20%);
+        z-index: -1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap"></div>
+    <div class="wrap2"></div>
+    <script>
+      let obj = {
+        pageNum: 1,
+        pagesize: 10,
+        total: 284,
+        createTimeParams: {},
+      };
+    </script>
+  </body>
+</html>

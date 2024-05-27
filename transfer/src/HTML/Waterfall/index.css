@@ -1,0 +1,14 @@
+.wrapper {
+  width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  /* columns: 6;
+  column-gap: 20px; */
+}
+.wrap-item {
+  position: absolute;
+}
+.wrapper div img {
+  width: 100%;
+  height: 100%;
+}

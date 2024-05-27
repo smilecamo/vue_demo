@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        --delay: 0;
+        width: 50px;
+        height: 50px;
+        background: blueviolet;
+        border-radius: 50%;
+        animation: moveX 1s linear;
+        animation-delay: var(--delay);
+        animation-fill-mode: forwards;
+        animation-play-state: paused;
+      }
+      @keyframes moveX {
+        100% {
+          transform: translateX(200px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container"></div>
+    <input type="range" id="range" min="0" max="1" step="0.01" />
+    <script>
+      let range = document.getElementById("range");
+      let container = document.querySelector(".container");
+      range.onchange = function (e) {
+        // container.style.("--delay", e.target.value);
+      };
+    </script>
+  </body>
+</html>

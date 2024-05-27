@@ -1,0 +1,26 @@
+body {
+    width: 100vw;
+}
+
+.home {
+    width: 100%;
+    header {
+        height: 50px;
+        position: sticky;
+        top: 0;
+        z-index: 99;
+    }
+    .silder {
+        margin-top: 10px;
+    }
+    .conatiner {
+        > div {
+            min-height: calc(100vh - 100px);
+            margin: 20px;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+        }
+    }
+}

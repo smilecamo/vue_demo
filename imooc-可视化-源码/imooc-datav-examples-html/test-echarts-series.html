@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECharts 多系列</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@4.7.0/dist/echarts.js"></script>
+    <style>
+      #chart {
+        width: 800px;
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="chart"></div>
+    <script>
+      const chartDom = document.getElementById('chart')
+      const chart = echarts.init(chartDom)
+      // http://www.youbaobao.xyz/datav-docs/guide/guide/echarts-basic.html
+      chart.setOption({
+        dataset: {
+          source: [
+            ['一季度', 100, 79, '分类1', 50],
+            ['二季度', 112, 81, '分类2', 60],
+            ['三季度', 96, 88, '分类3', 55],
+            ['四季度', 123, 72, '分类4', 70]
+          ]
+        },
+        title: {
+          text: 'ECharts 多系列案例',
+          subtext: '慕课网数据可视化课程'
+        },
+        xAxis: {
+          data: ['一季度', '二季度', '三季度', '四季度']
+        },
+        yAxis: {},
+        legend: {
+          data: [{
+            name: '分类',
+            icon: 'circle',
+            textStyle: {
+              color: 'red'
+            }
+          }, '折线图', '柱状图'],
+          left: 200
+        },
+        toolbox: {
+          feature: {
+            saveAsImage: {},
+            dataZoom: {
+              // 不选取坐标轴
+              yAxisIndex: false
+            },
+            restore: {}
+          }
+        },
+        grid: {
+          top: 100,
+          left: '10%',
+          right: '10%',
+          bottom: 100
+        },
+        dataZoom: [
+          {
+            show: true,
+            start: 30,
+            end: 70
+          }
+        ],
+        series: [
+          {
+            name: '分类',
+            type: 'pie',
+            center: ['65%', 60],
+            radius: 35,
+            encode: { itemName: 3, value: 4 }
+          },
+          {
+            name: '折线图',
+            type: 'line',
+            encode: { x: 0, y: 1 }
+          },
+          {
+            name: '柱状图',
+            type: 'bar',
+            encode: { x: 0, y: 2 }
+          }
+        ]
+      })
+    </script>
+  </body>
+</html>

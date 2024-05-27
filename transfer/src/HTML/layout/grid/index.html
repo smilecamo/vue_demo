@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      article {
+        width: 300px;
+        height: 300px;
+        border: 1px solid skyblue;
+        display: grid;
+        /* repeat 重复片段 repeat(3,1fr) 按比例平均分成三份 repeat(5,1fr 2fr) 按照1fr 2fr 1fr 2fr 重复五次
+                  length: repeat(300px,600px,100px)正整数长度
+                  auto:最小尺寸的最大值
+                  auto-fill:自动填充
+                  auto-fit:
+                  fr(flex):按比例
+            minmax(200px 600px) 此函数包含两个参数，最小值 和 最大值.
+            gap：20px; row-gap:20px;; 行间距 和 columns-gap:20px;列间距 的缩写 间距
+            
+            网格轨道尺寸
+              grid-template-rows 设置显式行网格轨道尺寸；
+              grid-auto-rows 设置隐式行网格轨道尺寸。
+              grid-template-显性的
+              grid-auto- 隐性的 未定义template的都可以使用
+              需要注意的是 repeat() 函数用于 grid-auto-rows 时会失效，当其失效时，grid-auto-rows 会取其默认值 auto
+              定位
+              1. 边线定位
+                grid-column-start:2;  grid-row-end:1;  栅格线 网格线布局
+                    缩写
+                    grid-column:1/1;
+                    grid-row:1/1;
+                repeat(3, [r-start] 1fr [r-end])栅格命名放置  grid-row-start: r-start 2;
+                span 偏移量 grid-column-start: span 2 ;偏移两个格子
+                    grid-row-start: 2;
+                    grid-column-start: 2;
+                    grid-row-end: span 2;
+                    grid-column-end: span 2;
+              2. 命名区域定位
+              grid-template-areas: "header header" "nav main" " footer footer";命名
+              grid-template-areas: ". ." ". ." " footer footer";// 占位
+              grid-area: header; // 使用命名
+            流动
+              grid-auto-flow: row dense; // row(默认) column(可选) dense(如果有空格，自动填充) 
+              column ：自动放置算法，通过依次填充每一列来放置网格项目，必要时添加新的列。
+              dense ：如果 grid-auto-flow 属性指定了该值，自动放置算法使用 dense （“密集”）包装算法，如果较小的网格项目出现在网格中，它将尝试在较早的时间内填入洞（“网格单元格”）
+              对齐方式
+              整体的对齐方式 和 flex 相似
+                justify-content: center;
+                align-content:center;
+              栅格里的元素
+                justify-items
+                align-items
+              栅格元素独立控制
+                justify-self
+                align-self
+                place-self：垂直 水平 // 简写
+              */
+        /* grid-template-rows 该属性是基于 网格行 的维度，  repeat(2, 50%) = 50% 50%*/
+        grid-template-rows: repeat(3, [r-start] 1fr [r-end]);
+        /* giid-template-columns 网格列 的维度 */
+        grid-template-columns: repeat(3, [c-start] 1fr [c-end]);
+      }
+      article div {
+        background-color: slateblue;
+        padding: 10px;
+      }
+      /* 定位布局 */
+      /* article div:first-child {
+        grid-row: 1 / span 3;
+        grid-column: 1 / span 1;
+      }
+      article div:nth-child(2) {
+        grid-row-start: 2;
+        grid-row-end: 4;
+        grid-column-start: 2;
+        grid-column-end: 4;
+      }
+      article div:nth-child(3) {
+        grid-column-end: span 2;
+      } */
+    </style>
+  </head>
+  <body>
+    <article>
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+    </article>
+  </body>
+</html>

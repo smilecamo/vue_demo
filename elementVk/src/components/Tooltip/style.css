@@ -1,0 +1,14 @@
+.vk-tooltip {
+  display: inline-block;
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity var(--vk-transition-duration);
+  }
+}
+.vk-tooltip__popper {
+  border: 1px solid #ccc;
+}

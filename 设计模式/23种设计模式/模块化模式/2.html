@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- module模式使用闭包封装私有状态和组织，他提供一种包装混合功公有/私有方法和变量的方式
+    放置泄漏道全局作用域，与其它开发人员接口发生冲突，通过该模式只需返回一个共有的api，而其他的一切都维持在私有闭包里 -->
+    <script type="module">
+      import { increse, dncrese } from "./1.js";
+      console.log(increse());
+      console.log(increse());
+      console.log(increse());
+      console.log(increse());
+    </script>
+  </body>
+</html>

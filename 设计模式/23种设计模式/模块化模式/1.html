@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 模块化模式 最初定义为 传统软件工程中为类提供私有和公共封装的一种方法
+    能够是一个单独的对象拥有公共、私有的方法和变量，从而屏蔽来自全局作用域的特殊部分，可以减少我们的函数名与页面中其他脚本区域内定义的函数名冲突 -->
+    <script>
+      const obg = (function () {
+        var count = 0;
+        return {
+          increse() {
+            return ++count;
+          },
+          decrese() {
+            return ++count;
+          },
+        };
+      })();
+      console.log(obg.increse());
+    </script>
+  </body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://necolas.github.io/normalize.css/8.0.1/normalize.css"
+    />
+
+    <!-- 
+    元素需要先滚动起来
+    scroll-snap-type作用就是确定是水平滚动定位，还是垂直滚动定位。支持的属性值如下：
+        x
+        y
+        mandatory mandatory表示“强制”，可选参数。强制定位，无论是添加删除元素，或者滚动窗口较小，不足以放下子元素。
+        proximity表示“大约”，可选参数。可能会定位。这个值的作用表现比较玄乎，时间有限，我也没有弄透。大家可以对比下面这个demo，感受和mandatory属性值的不同。
+    scroll-snap-stop 表示是否允许滚动容器忽略捕获位置。
+        always 不能忽略捕获位置。且必须定位到第一个捕获元素的位置。
+        normal 默认值。可以忽略捕获位置。
+    scroll-snap-align 是作用在滚动容器子元素上的，表示捕获点是上边缘，下边缘，还是中间位置。
+        start 起始位置对齐，例如，垂直滚动，子元素和容器同上边缘对齐。
+        end 结束位置对齐，例如，垂直滚动，子元素和容器同下边缘对齐。
+        center 居中对齐。子元素中心和滚动容器中心一致。
+
+
+text-wrap:balance 可以让每一行文字的个数尽可能的相等，即使宽度足够的大。
+
+
+CSS 
+flex-shrink 控制项目在空间不足的情况下，无单位数字值，只是相对比例，属性指定了 flex 元素的收缩规则。flex 元素仅在默认宽度之和大于容器的时候才会发生收缩，其收缩的大小是依据 flex-shrink 的值。
+                0 不会缩小
+                大于1 会相对于其他元素更快缩小
+flex-basis 定义 项目在未进行伸缩调整之前的初始大小
+              固定长度
+              auto 自动计算
+              content 不会超过父元素的尺寸
+              fit-content 项目大小根据内容进行计算但不会超过所需内容的最小尺寸
+
+-->
+    <!-- 移动端 -->
+    <!-- 
+      .wrap {
+        display: flex;
+        width: 100%;
+        height: 300px;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+      }
+      .wrap::-webkit-scrollbar {
+        display: none;
+      }
+      .item {
+        width: 100%;
+        height: 100%;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
+        scroll-snap-align: start;
+        scroll-snap-stop: normal;
+      }
+      .item:first-child {
+        background: slateblue;
+      }
+      .item:nth-child(2) {
+        background: salmon;
+      }
+      .item:nth-child(3) {
+        background: seagreen;
+      }
+      .item:nth-child(4) {
+        background: skyblue;
+      } -->
+    <style>
+      .wrap {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        scroll-snap-type: y proximity;
+        overflow-y: scroll;
+      }
+      .item {
+        flex-shrink: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
+        scroll-snap-stop: always;
+        scroll-snap-align: start;
+      }
+      .item:first-child {
+        background: slateblue;
+      }
+      .item:nth-child(2) {
+        background: salmon;
+      }
+      .item:nth-child(3) {
+        background: seagreen;
+      }
+      .item:nth-child(4) {
+        background: skyblue;
+      }
+      .p {
+        width: 300px;
+        border: 1px solid;
+      }
+      .balance {
+        text-wrap: balance;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 移动端 -->
+    <!-- <div class="wrap">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+    </div> -->
+    <p class="p balance">
+      感谢大家对《CSS选择器
+      第2版》的支持，购买签名版送极客时间14天畅学卡，数量有限，先到先得！
+    </p>
+
+    <div class="wrap">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
+      <div class="item">6</div>
+      <div class="item">7</div>
+      <div class="text"></div>
+    </div>
+  </body>
+  <script>
+    // getBoundingClientRect() 回值是一个 DOMRect 对象，该对象使用 left、top、right、bottom、x、y、width 和 height
+    const wrap = document.querySelectorAll(".wrap")[0]; //  滚动容器
+    var timeScrollEnd = null; // 定时器，用来检测滚动是否结束
+    wrap.addEventListener("scroll", function () {
+      clearTimeout(timeScrollEnd);
+      timeScrollEnd = setTimeout(function () {
+        [].slice.call(wrap.children).forEach(function (item, index) {
+          console.log(item.getBoundingClientRect());
+          if (
+            Math.abs(
+              item.getBoundingClientRect().left -
+                wrap.getBoundingClientRect().left
+            ) < 10
+          ) {
+            console.log("滚动结束，当前显示的是第" + (+index + 1));
+          }
+        });
+      }, 100);
+    });
+  </script>
+</html>

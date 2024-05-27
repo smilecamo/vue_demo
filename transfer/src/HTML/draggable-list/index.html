@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>拖拽列表</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .draggable-list-wrapper {
+        margin-top: 150px;
+        width: 400px;
+        padding: 20px;
+        box-shadow: 1px 2px 3px #333;
+      }
+      .draggable-list-wrapper ol {
+        all: unset;
+      }
+      .draggable-list-wrapper li {
+        padding: 20px;
+        margin: 10px;
+        text-align: center;
+        border: 1px solid #333;
+        background: #ccc;
+      }
+      .draging {
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="draggable-list-wrapper"></div>
+  </body>
+  <script>
+    const listData = [
+      "111111111111",
+      "222222222222",
+      "333333333333",
+      "444444444444",
+      "555555555555",
+    ];
+    (() => {
+      const render = () => {
+        renderOl();
+      };
+      //   渲染数据li
+      const renderOl = () => {
+        const dragWrap = document.querySelector(".draggable-list-wrapper");
+        const ol = document.createElement("ol");
+        const olFlag = document.createDocumentFragment();
+        ol.classList.add("draggable-list");
+        listData.forEach((item) => {
+          const li = document.createElement("li");
+          li.classList.add("draggable-item");
+          li.draggable = true; // 变成可拖拽元素
+          li.innerHTML = `<p>${item}</p>`;
+          olFlag.appendChild(li);
+        });
+        ol.appendChild(olFlag);
+        dragWrap.appendChild(ol);
+      };
+      //   绑定事件
+      const bindvent = () => {
+        const oDraggableList = document.querySelector(".draggable-list");
+        const oDraggableItems = document.querySelectorAll(".draggable-item");
+        oDraggableList.addEventListener("dragover", handleDragOver, false);
+        oDraggableList.addEventListener(
+          "dragend",
+          () => e.preventDefault(),
+          false
+        );
+        window.addEventListener("dragend", () => e.preventDefault(), false);
+        window.addEventListener("dragover", () => e.preventDefault(), false);
+        oDraggableItems.forEach((item) => {
+          item.addEventListener("dragstart", handleDragStart, false);
+          item.addEventListener("dragend", handleDragEnd, false);
+        });
+      };
+      // 当元素或选中的文本被拖到一个可释放目标上时触发（每 100 毫秒触发一次）。
+      function handleDragOver(e) {
+        e.preventDefault();
+        const oDraggableList = this;
+        // 找到拖拽元素
+        // 找到没有拖拽的元素
+        // 对比得出找到相邻的推拽元素 拖拽元素的位置大于未拖拽元素的顶部位置和自身的高度的一半
+        // 交换位置
+
+        const oDragItem = oDraggableList.querySelector(".draging"); // 拖拽元素目标
+        const oDragNoneItems = oDraggableList.querySelectorAll(
+          ".draggable-item:not(.draging)"
+        );
+        const d = [...oDragNoneItems].find(
+          (i) => e.clientY <= i.offsetTop + i.offsetHeight / 2
+        );
+        oDraggableList.insertBefore(oDragItem, d);
+      }
+      //   item 拖拽开始
+      function handleDragStart(e) {
+        setTimeout(() => {
+          // 如果一开始就不可见，那么拖拽的元素也会不可见，这个时候用异步，可以使拖拽的时候显示，底部元素不显示
+          e.target.classList.add("draging");
+        }, 0);
+      }
+      //   item 拖拽结束
+      function handleDragEnd(e) {
+        e.target.classList.remove("draging");
+      }
+      const init = () => {
+        render();
+        bindvent();
+      };
+      init();
+    })();
+  </script>
+</html>

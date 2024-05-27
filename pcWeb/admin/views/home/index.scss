@@ -1,0 +1,11 @@
+.user-info {
+    display: flex;
+    > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        pre {
+            all: unset;
+        }
+    }
+}

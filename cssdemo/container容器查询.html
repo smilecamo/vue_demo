@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!--
+        @container规则，也称@container查询，可以实时匹配指定为容器元素的尺寸，
+        
+        开发者可以基于不同的尺寸范围，对内部的元素进行特定的样式设置与布局实现。
+        @media匹配的是浏览器窗体，而@container匹配的是某个元素。
+        @media查询适用于宏观布局，@container查询适用于微观布局
+        container-type: CSS属性可以让普通的元素变成容器元素 cqw相对于这个元素计算
+            inline-size;在容器的内联轴上为维度查询建立查询容器。将布局、样式和内联大小包含应用于元素。
+            size;在内联和块维度的内联轴和块轴上建立用于容器大小查询的查询容器。将布局包含、样式包含和大小包含应用于容器。
+        container-name:name 容器命名 当一个界面有多个容器的时候使用， @container name 就可以匹配到对应的
+
+        凡是写在@container规则中的CSS语句，都会寻找最近的容器元素，并进行匹配。也就是说只有写了container-type @container才会生效
+         cqw container query width 容器查询宽度
+         cqh container query height 容器查询高度
+         cqi container query inline-size 容器查询内联宽度
+         cqb container query block-size 容器查询块宽度
+         cqmin container query min 容器查询尺寸较小的 尺寸300*400 那么100cqmin就是300px
+         cqmax container query max 容器查询尺寸较大的 尺寸300*400 那么100cqmax就是400px
+     
+     
+        clamp() 函数的作用是把一个值限制在一个上限和下限之间， 它接收三个参数：最小值、首选值、最大值。
+        -->
+    <style>
+      .container {
+        container-type: inline-size;
+        container-name: p1;
+      }
+      .container1 {
+        container-type: inline-size;
+        container-name: p2;
+      }
+      p {
+        font-size: clamp(0.75rem, calc(100cqw / 40), 2rem);
+        text-align: center;
+      }
+      @container p1 (max-width:480px) {
+        p {
+          font-weight: bold;
+          text-align: left;
+        }
+      }
+      @container p2 (max-width:480px) {
+        p {
+          font-weight: bold;
+          text-align: left;
+          color: red;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p>
+        函数的作用是把一个值限制在一个上限和下限之间，
+        它接收三个参数：最小值、首选值、最大值。
+      </p>
+    </div>
+    <div class="container1">
+      <p>
+        函数的作用是把一个值限制在一个上限和下限之间，
+        它接收三个参数：最小值、首选值、最大值。
+      </p>
+    </div>
+  </body>
+</html>

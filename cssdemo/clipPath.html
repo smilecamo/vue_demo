@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 
+        clip-path 使用裁剪方式创建元素的可显示区域。区域内显示，区域外隐藏
+                circle（50% at 10px 20px） 圆形 前面是直径 at后面是圆心x，y 针对左上角
+                按矩形剪裁，语法 clip-path:inset(top,right,bottom,left); 然后inset还接收一个round参数，round参数后面接收1到4个角度值，类似border-radius。
+                polygon 多边形
+                ellipse 椭圆
+                path
+        */
+      .container {
+        width: 100px;
+        height: 100px;
+        background: rgba(0, 0, 0, 0.2);
+      }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      .img1 {
+        clip-path: inset(0 0 50px 0 round 0 50% 50% 0);
+      }
+      .img2 {
+        clip-path: circle(100% at 100% 100%);
+      }
+      .img3 {
+        clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+      }
+      .img4 {
+        clip-path: polygon(50% 50%, 100% 100%, 0% 100%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img
+        class="img1"
+        src="https://plus.unsplash.com/premium_photo-1698339161104-841f2fed237c?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8"
+        alt=""
+      />
+      <img
+        class="img2"
+        src="https://plus.unsplash.com/premium_photo-1698339161104-841f2fed237c?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8"
+        alt=""
+      />
+      <img
+        class="img3"
+        src="https://plus.unsplash.com/premium_photo-1698339161104-841f2fed237c?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8"
+        alt=""
+      />
+      <img
+        class="img4"
+        src="https://plus.unsplash.com/premium_photo-1698339161104-841f2fed237c?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8"
+        alt=""
+      />
+    </div>
+  </body>
+</html>

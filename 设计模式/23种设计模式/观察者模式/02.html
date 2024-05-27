@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .wrap {
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+      }
+      .left {
+        width: 20vw;
+        background: blueviolet;
+      }
+      .right {
+        flex: 1;
+        background: yellowgreen;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">header</header>
+    <div class="wrap">
+      <div class="left">
+        <ol class="oli">
+          <li>首页</li>
+          <li>yonghuguanli</li>
+          <li>企业管理</li>
+          <li>教室</li>
+        </ol>
+      </div>
+      <div class="right"></div>
+    </div>
+    <script>
+      class Subject {
+        constructor() {
+          this.observers = [];
+        }
+        add(observer) {
+          this.observers.push(observer);
+        }
+        notify(data) {
+          this.observers.forEach((item) => {
+            item.update(data);
+          });
+        }
+      }
+      class Observer {
+        constructor(el) {
+          this.el = document.querySelector(el);
+        }
+        update(data) {
+          this.el.innerHTML = data;
+        }
+      }
+      const subject = new Subject();
+      const observerRight = new Observer(".right");
+      const observerHeader = new Observer(".header");
+      subject.add(observerRight);
+      subject.add(observerHeader);
+      // querySelector() 方法返回文档中匹配指定 CSS 选择器的一个元素。
+      // 注意： querySelector() 方法仅仅返回匹配指定选择器的第一个元素。如果你需要返回所有的元素，请使用 querySelectorAll() 方法替代。
+      const oli = document.querySelectorAll("li");
+      for (let index = 0; index < oli.length; index++) {
+        const element = oli[index];
+        element.addEventListener("click", (item) => {
+          console.log(item.target.innerHTML);
+          subject.notify(item.target.innerHTML);
+        });
+      }
+    </script>
+  </body>
+</html>

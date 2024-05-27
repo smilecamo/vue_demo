@@ -1,0 +1,24 @@
+body {
+  width: 100vw;
+}
+
+.home {
+  width: 100%;
+}
+.home header {
+  height: 50px;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+.home .silder {
+  margin-top: 10px;
+}
+.home .conatiner > div {
+  min-height: calc(100vh - 100px);
+  margin: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+}/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- // 代理模式
+        使用者因为一些原因或权限，没办法直接访问目标类，需要加一层代理进行访问
+        代理类和目标类分离，隔离开目标类和使用者
+        符合开放封闭原则
+      // 场景：
+      // 1. 网页事件代理  冒泡事件的代理
+      // 2。 jQuery $.proxy
+      // 3. ES6 Proxy 
+    -->
+    <!-- 
+        代理模式 vs 适配器模式 
+        适配器模式 提供一个不同的接口（不同版本的插头） 可以使用 但是不能用 需要适配才能使用
+        代理模式 提供一模一样的接口 没有权限使用（不能用）但是还想使用，显示原有功能，但是是经过限制或者阉割的
+        装饰器模式 扩展功能 原有功能不变可直接使用
+     -->
+    <div id="wrap">
+      <a href="#">a</a>
+      <a href="#">b</a>
+      <a href="#">c</a>
+      <a href="#">d</a>
+    </div>
+    <script src="
+https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js
+"></script>
+    <script>
+      class ReadImg {
+        constructor(fileName) {
+          this.fileName = fileName;
+          this.loadFormDisk();
+        }
+        display() {
+          console.log(this.fileName + "   display...");
+        }
+        loadFormDisk() {
+          console.log(this.fileName + "   loadFormDisk...");
+        }
+      }
+      class ProxyImg {
+        constructor(fileName) {
+          this.realImg = new ReadImg(fileName);
+        }
+        display() {
+          this.realImg.display();
+        }
+      }
+      //
+      let realImg = new ProxyImg("1.png");
+      realImg.display();
+    </script>
+    <script>
+      // 冒泡事件的代理
+      //   $("#wrap").click((e) => {
+      //     if (e.target.nodeName === "A") {
+      //       alert(e.target.innerText);
+      //     }
+      //   });
+      document.getElementById("wrap").addEventListener("click", function () {
+        setTimeout(() => {
+          console.log(this);
+        }, 1000);
+      });
+    </script>
+    <script>
+      // 明星
+      let star = {
+        name: "张++",
+        age: 30,
+        phone: "star 18888888888",
+      };
+      // 经纪人
+      let agent = new Proxy(star, {
+        get: function (target, key) {
+          // 如果访问手机号返回 经纪人的
+          if (key === "phone") {
+            return "agent:122222222";
+          }
+          if (key === "price") {
+            return 15000;
+          }
+          return target[key];
+        },
+        set: function (target, key, value) {
+          if (key === "customPrice") {
+            if (value < 10000) {
+              throw new Error("报价低");
+            }
+            target[key] = value;
+          }
+          target[key] = value;
+        },
+      });
+      console.log(agent.phone);
+      console.log(agent.price);
+      agent.customPrice = 18000;
+      console.log(agent.customPrice);
+    </script>
+  </body>
+</html>

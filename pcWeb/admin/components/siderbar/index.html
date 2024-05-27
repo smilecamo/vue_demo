@@ -1,0 +1,93 @@
+<ul class="nav flex-column">
+  <li class="nav-item">
+    <a
+      class="nav-link active"
+      aria-current="page"
+      href="/pcWeb/admin/views/home/index.html"
+      id="home"
+      >首页</a
+    >
+  </li>
+  <div class="accordion accordion-flush" id="accordionPanelsStayOpenExample">
+    <div class="accordion-item user-manage">
+      <h2 class="accordion-header">
+        <button
+          class="accordion-button"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#user-manage"
+          aria-expanded="false"
+          aria-controls="user-manage"
+        >
+          用户管理
+        </button>
+      </h2>
+      <div id="user-manage" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="/pcWeb/admin/views/user-manage/user-create/index.html"
+            id="user-create"
+            >新增用户</a
+          >
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="/pcWeb/admin/views/user-manage/user-list/index.html"
+            id="user-list"
+            >用户列表</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#text-manage"
+          aria-expanded="true"
+          aria-controls="text-manage"
+        >
+          新闻管理
+        </button>
+      </h2>
+      <div id="text-manage" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            id="news-create"
+            href="/pcWeb/admin/views/news-manage/news-create/index.html"
+            >新增新闻</a
+          >
+          <a
+            class="nav-link active"
+            aria-current="page"
+            id="news-list"
+            href="/pcWeb/admin/views/news-manage/news-list/index.html"
+            >新闻列表</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</ul>
+<style>
+  .accordion-button:not(.collapsed) {
+    color: #000;
+    background-color: #fff;
+    box-shadow: none;
+  }
+  .accordion-button:focus {
+    box-shadow: none;
+  }
+  .accordion-item {
+    border: none;
+  }
+  .nav-link {
+    color: #000;
+  }
+</style>

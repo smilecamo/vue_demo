@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>canvasClock</title>
+    <style>
+      .clock {
+        width: 500px;
+        height: 500px;
+        background-color: #202020;
+        border-radius: 80px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="clock">
+      <canvas width="500" height="500" id="canvas"></canvas>
+    </div>
+    <script src="./index.js"></script>
+    <script>
+      new Clock().init();
+    </script>
+  </body>
+</html>

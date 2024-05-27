@@ -1,0 +1,16 @@
+// 覆盖组件库中的样式
+// 1. 需要先自定义一个命名空间
+// 2. 现在浏览器中调试样式
+// 3. 把调试好的放到这个命名空间中
+// 4. 在app.vue引入
+// 5. 在组件内需要该样式的元素父元素上使用
+.m-choose-icon-dialog-body-height{
+  .el-dialog__body{
+    height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+}
+.el-popover.el-popper{
+  padding: 0 !important;
+}

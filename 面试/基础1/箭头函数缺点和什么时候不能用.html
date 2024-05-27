@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn1">11111</button>
+    <button id="btn2">11111</button>
+    <script>
+      // 不适用对象方法
+      const obj = {
+        name: "lizi",
+        // 错误
+        getName: () => {
+          console.log(this);
+          console.log(this.name);
+        },
+        // 正确
+        getName2() {
+          console.log(this);
+          console.log(this.name);
+        },
+      };
+      obj.getName(); // 打印为空 因为this指向的是window
+      obj.getName2(); // 打印为lizi 因为this指向的是{name: 'lizi', getName: ƒ, getName2: ƒ}
+
+      //   // 不适用原型方法
+      const obj2 = {
+        name: "lisi",
+      };
+      // 错误
+      obj2.__proto__.getName = () => {
+        return this.name;
+      };
+      //  正确
+      obj2.__proto__.getName2 = function () {
+        return this.name;
+      };
+      console.log(obj2.getName()); // 空
+      console.log(obj2.getName2()); //lisi
+
+      // 不适用构造函数
+      //   错误
+      const Foo = (name, age) => {
+        this.name = name;
+        this.age = age;
+      };
+
+      //   正确
+      const Foo2 = function (name, age) {
+        this.name = name;
+        this.age = age;
+      };
+      //   const f = new Foo("lisi", 18); // Foo is not a constructor
+      //   const f2 = new Foo2("lisi", 18); // Foo is not a constructor
+
+      //   不适用 动态上下文的回调函数
+      // 错误
+      const btn1 = document.getElementById("btn1");
+      btn1.addEventListener("click", () => {
+        console.log(this); // window
+        this.innerHTML = "clicker";
+      });
+      //   正确
+      const btn2 = document.getElementById("btn2");
+      btn2.addEventListener("click", function () {
+        console.log(this); // 当前点击元素
+        this.innerHTML = "clicker";
+      });
+    </script>
+  </body>
+</html>

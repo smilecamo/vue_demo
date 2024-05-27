@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+        观察者模式
+        一种一对多的依赖关系，当一个对象的状态发生改变时，其所有依赖者都会收到通知并自动更新。
+        当对象间存在一对多关系时，则使用观察者模式（Observer Pattern）。比如，当一个对象被修改时，则会自动通知依赖它的对象。观察者模式属于行为型模式。
+          优点：目标和观察者，功能耦合度降低，专注自身功能逻辑；观察者被动接受更新，时间上解耦，实时接受目标者更新状态
+          缺点:观察者模式虽然实现了对对象间依赖关系的低解耦，但不能对事件通知进行细分管控，如‘筛选通知’‘指定事件通知’
+        订阅发布
+        一对多
+    -->
+    <script>
+      // 观察者模式
+      // 订阅发布
+      // 一对多
+      class Subject {
+        constructor() {
+          this.observers = [];
+        }
+        add(observer) {
+          this.observers.push(observer);
+        }
+        remove(observer) {
+          this.observers = this.observers.filter((item) => item !== observer);
+        }
+        notify() {
+          this.observers.forEach((item) => {
+            item.update();
+          });
+        }
+      }
+      class Observer {
+        constructor(name) {
+          this.name = name;
+        }
+        update() {
+          console.log(`${this.name}被通知`);
+        }
+      }
+      const subject = new Subject();
+      const observer1 = new Observer("observer1");
+      const observer2 = new Observer("observer2");
+      subject.add(observer1);
+      subject.add(observer2);
+      subject.notify();
+    </script>
+  </body>
+</html>
