@@ -13,6 +13,7 @@
     :disabled="disabled || loading"
     :autofocus="autofocus"
     :type="nativeType"
+    
   >
     <Icon icon="spinner" spin v-if="loading"></Icon>
     <Icon v-if="icon" :icon="icon"></Icon>

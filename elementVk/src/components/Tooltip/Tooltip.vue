@@ -29,13 +29,16 @@ const props = withDefaults(defineProps<TooltipProps>(), {
   placement: 'bottom',
   trigger: 'click',
   transition: 'fade',
-  openDelay: 1000,
-  closeDelay: 1000
+  openDelay: 0,
+  closeDelay: 0
 })
 const emits = defineEmits<TooltipEmits>()
 const isOpen = ref<boolean>(false)
-
-// 触发事件
+// 2986 
+// 触发事件 
+// 917-727-786+1060.5+424-201.5+272
+// 328+458.5+485.5++222.5+348.5+348.5+348.5+32.5
+// 128+11+145+18+56+272+150
 let events: Record<string, any> = reactive({})
 let outEvents: Record<string, any> = reactive({})
 const openNumber = ref(0)

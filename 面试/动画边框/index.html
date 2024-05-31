@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>线条动画边框</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background: rgb(9, 9, 11);
+        }
+
+        .container {
+            position: relative;
+            width: 400px;
+            height: 200px;
+            margin: 50px;
+            /* 确保有足够空间显示动画 */
+            border-radius: 30px;
+            overflow: hidden;
+            padding: 1px;
+        }
+
+        .element {
+            background: rgba(9, 9, 11, 0.38);
+            border: 1px solid rgb(30, 41, 59);
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            border-radius: 30px;
+        }
+
+        .moving-element {
+            position: absolute;
+            top: 0;
+            left: 40px;
+            width: 80px;
+            height: 80px;
+            background: #ccc;
+            animation: moveAround 8s linear infinite;
+            border-radius: 40px;
+            /* 圆心和边框一致 */
+            transform: translate(-40px, -40px);
+        }
+
+        /* 
+运动路径为400*2 + 200*2 = 1200px
+开始运动是0%-top:0,right:0
+运动到第一条边是 400/1200 = 33.33% top:0, left:父元素的宽度减去本身的宽度
+运到到第二条是 (400+ 200) /1200 = 50%  top:父元素的高度减去本身的高度, left:父元素的宽度减去本身的宽度
+运到到第三条是 (400+ 200 + 400) /1200 = 83.33 top:父元素的高度减去本身的高度,left:0
+运到到第四条是 (400+ 200 + 400) /1200 = 100% top:0.left:0
+*/
+        /* @keyframes moveAround {
+
+            0%,
+            100% {
+                top: 0px;
+                left: 0px
+            }
+
+            33.3% {
+                top: 0;
+                left: calc(100% - 80px)
+            }
+
+            50% {
+                top: calc(100% - 80px);
+                left: calc(100% - 80px)
+            }
+
+            83.3% {
+                top: calc(100% - 80px);
+                left: 0
+            }
+        } */
+        @keyframes moveAround {
+
+            0% {
+                left: 40px;
+                top: 0px;
+            }
+
+            28.93% {
+                left: 360px;
+                top: 0px;
+            }
+
+            33.99% {
+                left: 400px;
+                top: 40px;
+            }
+
+            44.82% {
+                left: 400px;
+                top: 160px;
+            }
+
+            49.88% {
+                left: 360px;
+                top: 200px;
+            }
+
+            78.81% {
+                left: 40px;
+                top: 200px;
+            }
+
+            83.87% {
+                left: 0px;
+                top: 160px;
+            }
+
+            94.70% {
+                left: 0px;
+                top: 40px;
+            }
+
+            100% {
+                left: 40px;
+                top: 0px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+    1. 线条跟着边框匀速运动
+    2. 线条内部有阴影
+    3. 圆角部分丝滑动画
+ -->
+    <div class="container">
+        <div class="moving-element"></div>
+        <div class="element"></div>
+    </div>
+    <script>
+        // script start
+        // async1 start
+        // async2
+        // promise1
+        // script end
+        // async1 end
+        // promise2
+        // setTimeout
+        async function async1() {
+            console.log('async1 start');
+            await async2()
+            console.log('async1 end');
+        }
+        async function async2() {
+            console.log('async2');
+        }
+        console.log('script start');
+        setTimeout(() => {
+            console.log('setTimeout');
+        }, 0)
+        async1()
+        new Promise(function (resolve) {
+            console.log('promise1');
+            resolve()
+        }).then(function () {
+            console.log('promise2');
+        })
+        console.log('script end');
+    </script>
+</body>
+
+</html>
