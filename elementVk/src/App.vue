@@ -22,7 +22,12 @@
   </Tooltip>
   <!-- <Message message="this is mesage" :duration="0" showClose></Message> -->
   <Input v-model="inputValue" @change="changeInput" />
-  <Input placeholder="autofocus" v-model="inputValue" autofocus @change="changeInput" />
+  <Input placeholder="autofocus" v-model="inputValue" autofocus @change="changeInput" clearable>
+    <!-- <template #prepend> http </template>
+    <template #append> .com </template>
+    <template #suffix> #suffix </template>
+    <template #prefix> #prefix </template> -->
+  </Input>
   <Input placeholder="showPassword" v-model="inputValue" showPassword @change="changeInput" />
   <Input placeholder="clearable" v-model="inputValue" clearable @change="changeInput" />
 </template>

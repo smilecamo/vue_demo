@@ -34,6 +34,7 @@
           class="vk-input__inner"
           :type="showPassword ? (!passwordVisible ? 'password' : 'text') : type"
           ref="inputRef"
+          v-bind="attrs"
           :disabled="disabled"
           :placeholder="placeholder"
           :autofocus="autofocus"
@@ -44,8 +45,26 @@
           @blur="handleBlur"
         />
         <!-- 后置区域 -->
-        <span v-if="$slots.suffix" class="vk-input__suffix">
+        <span
+          v-if="$slots.suffix || showClear || showPasswordArea"
+          class="vk-input__suffix"
+          @click="keepFocus"
+        >
           <slot name="suffix"></slot>
+          <!-- 清除区域 -->
+          <Icon
+            icon="circle-xmark"
+            v-if="showClear"
+            @click="clearHandle"
+            @mousedown.prevent="() => {}"
+          />
+          <!-- 密码区域eye显示 -->
+          <Icon
+            :icon="passwordVisible ? 'eye-slash' : 'eye'"
+            v-if="showPasswordArea"
+            @click="togglePasswordVisible"
+          >
+          </Icon>
         </span>
       </div>
       <!-- 后置区域 -->
@@ -59,17 +78,52 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, nextTick, useAttrs, watch } from 'vue'
+import type { Ref } from 'vue'
+import Icon from '../Icon/Icon.vue'
 import type { IInputProps, IInputExpose, IInputEmits } from './types'
+defineOptions({
+  name: 'VkInput',
+  inheritAttrs: false
+})
+const attrs = useAttrs()
 const props = withDefaults(defineProps<IInputProps>(), {})
 const emits = defineEmits<IInputEmits>()
-const inputRef = ref<HTMLInputElement | null>(null)
+const inputRef = ref() as Ref<HTMLInputElement>
 const innerValue = ref(props.modelValue)
-const passwordVisible = computed(() => props.showPassword)
-
+const passwordVisible = ref(false)
+// 展示清除区域
+const showClear = computed(
+  () => props.clearable && !props.disabled && !!innerValue.value && isFocus.value
+)
+// 清除按钮
+const clearHandle = () => {
+  innerValue.value = ''
+  emits('clear')
+  emits('change', '')
+  emits('update:modelValue', '')
+  emits('input', '')
+}
+// 展示密码区域
+const showPasswordArea = computed(() => props.showPassword && !props.disabled && !!innerValue.value)
+// 切换密码状态显示
+const togglePasswordVisible = () => {
+  passwordVisible.value = !passwordVisible.value
+}
 const handleChange = () => {
   emits('change', innerValue.value)
 }
+// 保持焦点
+const keepFocus = async () => {
+  await nextTick()
+  inputRef.value?.focus()
+}
+watch(
+  () => props.modelValue,
+  (newValue) => {
+    innerValue.value = newValue
+  }
+)
 // 输入框输入事件
 const handleInput = () => {
   emits('update:modelValue', innerValue.value)
@@ -87,6 +141,9 @@ const handleBlur = (event: FocusEvent) => {
   isFocus.value = false
   emits('blur', event)
 }
+defineExpose<IInputExpose>({
+  ref: inputRef.value
+})
 </script>
 
 <style scoped></style>

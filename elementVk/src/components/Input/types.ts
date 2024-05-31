@@ -16,5 +16,8 @@ export interface IInputEmits {
   (e: 'blur', value: FocusEvent): void
   (e: 'input', value: string): void
   (e: 'focus', value: FocusEvent): void
+  (e: 'clear'): void
 }
-export interface IInputExpose {}
+export interface IInputExpose {
+  ref: HTMLInputElement | HTMLAreaElement
+}
