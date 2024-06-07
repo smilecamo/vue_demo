@@ -37,6 +37,7 @@
           v-bind="attrs"
           :disabled="disabled"
           :placeholder="placeholder"
+          :readonly="readonly"
           :autofocus="autofocus"
           v-model="innerValue"
           @change="handleChange"
@@ -141,8 +142,8 @@ const handleBlur = (event: FocusEvent) => {
   isFocus.value = false
   emits('blur', event)
 }
-defineExpose<IInputExpose>({
-  ref: inputRef.value
+defineExpose({
+  ref: inputRef
 })
 </script>
 

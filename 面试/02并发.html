@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>并发请求</title>
+</head>
+
+<body>
+    <script>
+        // 并发请求 
+
+
+        /**
+               * 可以一次发送多个请求，
+               * 如有失败自动重试，直到所有的都成功，
+               * 或者超出最大次数
+               * 返回结果{success:[],error:[]}
+              */
+        let fn1 = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    reject('错误')
+                }, 1000);
+            })
+        }
+        let fn2 = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(1)
+                }, 3000);
+            })
+        }
+        let fn3 = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(2)
+                }, 2000);
+            })
+        }
+        class RequestList {
+            map = {}// 用来存请求，后续加上id可以判断哪个需要重新发送
+            list = []// 用来存请求
+            _queue = []
+            success = []
+            error = []
+            maxTry = 5
+            constructor(fnList, maxTry = 4) {
+                this.list = fnList
+                fnList.map((fn, index) => {
+                    let id = `id_${index}`
+                    fn.id = id
+                    fn.hasTry = 0
+                    this.maxTry = maxTry
+                    this.map[id] = fn
+                })
+            }
+            createPromise(fn) {
+                return new Promise((resolve, reject) => {
+                    fn().then(res => {
+                        resolve({
+                            id: fn.id,
+                            value: res
+                        })
+                    }).catch(err => {
+                        reject({
+                            id: fn.id,
+                            value: err
+                        })
+                    })
+                })
+            }
+            send() {
+                this.list.forEach(fn => {
+                    this._queue.push(this.createPromise(fn))
+                })
+                return this.sendAllSettled(this._queue)
+            }
+            sendAllSettled(queue) {
+                return new Promise((resolve, reject) => {
+                    let queueErrList = []
+                    // 同时发送请求 获取请求的结果
+                    Promise.allSettled(queue).then(resList => {
+                        queueErrList = []
+                        resList.forEach(item => {
+                            if (item.status === 'fulfilled') {
+                                console.log(item.value);
+                                this.success.push(item.value.value)
+                            } else {
+                                let _id = item.reason.id // 找到失败的id
+                                let _fn = this.map[_id]
+                                console.log();
+                                // 是否超出最大次数
+                                if (_fn.hasTry < this.maxTry) {
+                                     console.log(item.reason);
+                                    queueErrList.push(this.createPromise(_fn))
+                                    _fn.hasTry += 1
+                                    this.sendAllSettled(queueErrList)
+                                } else {
+                                    console.log(item.reason);
+                                    this.error.push(item.reason.value)
+                                }
+                            }
+                        })
+                        if (queueErrList.length == 0) {
+                            resolve({
+                                success: this.success,
+                                error: this.error
+                            })
+                            console.log({
+                                success: this.success,
+                                error: this.error
+                            });
+                        }
+                    })
+                })
+
+            }
+        }
+        new RequestList([fn1, fn2, fn3]).send().then(res => {
+            console.log(res);
+        })
+
+    </script>
+</body>
+
+</html>

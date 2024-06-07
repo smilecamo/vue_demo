@@ -34,8 +34,8 @@ const props = withDefaults(defineProps<TooltipProps>(), {
 })
 const emits = defineEmits<TooltipEmits>()
 const isOpen = ref<boolean>(false)
-// 2986 
-// 触发事件 
+// 2986
+// 触发事件
 // 917-727-786+1060.5+424-201.5+272
 // 328+458.5+485.5++222.5+348.5+348.5+348.5+32.5
 // 128+11+145+18+56+272+150
@@ -44,14 +44,12 @@ let outEvents: Record<string, any> = reactive({})
 const openNumber = ref(0)
 const open = () => {
   openNumber.value++
-  console.log('openNumber:', openNumber.value)
   isOpen.value = true
   emits('visible-change', true)
 }
 const closeNumber = ref(0)
 const close = () => {
   closeNumber.value++
-  console.log('closeNumber:', closeNumber.value)
   isOpen.value = false
   emits('visible-change', false)
 }
@@ -117,6 +115,10 @@ useClickOutside(toolTipContainer, () => {
   // 如果为点击触发，并且是开启状态，以及外部没有绑定手动事件
   if (props.trigger == 'click' && isOpen.value && !props.manual) {
     closeFinal()
+  }
+  // 点击外部
+  if (isOpen.value) {
+    emits('click-outside', true)
   }
 })
 let popperInstance: null | Instance = null
