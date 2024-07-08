@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类型检测</title>
+</head>
+
+<body>
+    <script>
+
+
+        /**
+         * 数据类型分为 值类型和引用类型
+         * 值类型有：undefined string number symbol Boolean Bigint
+         * 引用类型有：Object Array null Function Date
+         * typeof
+         * 直接在计算机底层基于数据类型的值（二进制）进行检测
+         * typeof null === 'object' 对象在计算机中都是以“000”开始的二进制存储，null也是，所以检测出来的结果是对象
+         * typeof 普通对象、数组对象、function、正则都是“object”
+         * 识别所有值类型
+         * 识别函数
+         * 识别引用类型，不能细分
+         * 
+         * instanceof 检测当前实例是否属于这个类
+         * 底层机制：只要当前类出现在实例的原型链上，结果就是true
+         * 由于可以肆意改原型链，所以检测出来的结果不准，
+         * 不能检测基本数据类型
+         * 
+         * constructor 
+         * 比instanceof好用一点，基本数据类型支持
+         * 但constructor可以的随意改，也是不准的
+         * 
+         * Object.prototype.toString.call([value])
+         * 标准的数据类型检测的方法，Object.prototype.toString不是转为字符串，而是返回当前实例所属类的信息
+         * '[object Number/String/Boolean/Null/Undefined/Symbol/Bigint/Object/Array/Date/Function/RegExp]'
+         * 
+        */
+
+        /**
+         * let obg = {}
+         * obj.toString() => [object Object] toString()执行，this是obj,所以检测是obj它的所属类信息
+         * 推测 只需要把Object.prototype.toString执行，让它里面的this变为要检测的值，那就能返回当前类的信息
+        */
+        // 自定义实现instanceof
+        // 原理就是判断当前实例是否属于这个类的一个实例
+        function instance_of(example, classFunc) {
+            let classFuncPrototype = classFunc.prototype,
+                proto = Object.getPrototypeOf(example);
+            while (true) {
+                if (proto === null) {
+                    return false
+                }
+                if (proto === classFuncPrototype) {
+                    return true
+                }
+                proto = Object.getPrototypeOf(proto)
+            }
+        }
+        let a = []
+        console.log(instance_of(a, Array));
+        console.log(instance_of(a, Object));
+        console.log(instance_of(a, RegExp));
+
+        /**
+         * 自定义实现类型检测
+        */
+        (function () {
+            var class2type = {};
+            var toString = class2type.toString; // Object.prototype.toString()
+            // 设定数据类型的映射表 往class2type里面设置key:value
+            ['Boolean', 'Number', 'String', 'Function', 'Array', 'Object', 'Date', 'RegExp', 'Error', 'Symbol', 'Map', 'Set']
+                .forEach(name => {
+                    class2type[`[object ${name}]`] = name.toLowerCase()
+                });
+            function toType(obj) {
+                if (obj == null) {
+                    // 传值是 null或undefined就直接返回字符串  因为null==undefined
+                    return obj + ''
+                }
+                // 基本数据类型使用typeof检测
+                return typeof obj === 'object' || typeof obj === 'function' ?
+                    class2type[toString.call(obj)] || 'object' : typeof obj
+            }
+
+            window.toType = toType
+        })()
+        // 深拷贝
+        // 类型转换
+        const a1 = 100 + 10//110
+        const a2 = 100 + '10'//'10010'
+        const c = true + '10'// 'true10'
+        // == 和 ===
+        // == 会进行一次类型转换
+        // 判断是不是null和undefined的时候使用 == 其他的时候都用 ===
+        // obj.a == null?相当于  obj.a === null || obj.b === undefined
+        /**
+         * falsely
+         * '',null,undefined,false,0,NaN
+         * truely 除了以上都是
+        */
+      </script>
+</body>
+
+</html>

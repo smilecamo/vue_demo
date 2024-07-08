@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function func(x, y) {
+            console.log(this, x, y);
+        }
+        let obj = {
+            name: 'OBJ'
+        };
+        Function.prototype.call = function call(context, ...params) {
+            let self = this,
+                key = Symbol('key'),
+                result;
+            context == null ? context = window : null;
+            context[key] = self;
+            result = context[key](...params);
+            delete context[key];
+            return result;
+        }
+        // Function.prototype.bind = function bind(context,...params){
+        //     let self = this;
+        //     return function proxy(...args){
+        //         self.apply(context,params.concat(args))
+        //     }
+        // }
+        func.call(obj,10,20)
+        document.body.addEventListener('click', function(){
+            console.log(1);
+        });
+    </script>
+</body>
+
+</html>
